@@ -5,23 +5,42 @@ using namespace std;
 /* ! #define(s) ! */
 void solve()
 {
-    int n,k,cnt=1;
-    cin>>n>>k;
-    int arr[n];
-    arr[n]=k;
+    int n,k,dif=2,cnt=1,ind=0;
+    cin>>k>>n;
+    int arr[k];
     if(n==k)
     {
         for (int i = 0; i < k; i++)
         {
-            arr[i] = cnt;
+            arr[i] = cnt;                                        
             cnt++;
         }
     }
     else
     {
-        
+        while((cnt<=n) && (ind!=k))
+        {
+            arr[ind]=cnt;            
+            ind++;
+            cnt+=dif;
+            if((n-cnt)<(k-(ind+1)))
+            {
+                cnt-=dif;
+                break;
+            }
+            dif++;
+        }
+        if(ind!=k)
+        {
+            cnt++;
+            for(int j=ind;j<k;j++)
+            {
+                arr[j]=cnt;
+                cnt++;
+            }
+        }
     }
-    for(int i=0;i<n;i++)
+    for(int i=0;i<k;i++)
     {
         cout<<arr[i]<<" ";
     }
